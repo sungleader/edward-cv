@@ -153,6 +153,9 @@ a:focus {
 
 .intro .intro-body .brand-heading {
     font-size: 40px;
+    white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
+    overflow: hidden;    /* 넘치는 텍스트를 숨김 */
+    text-overflow: ellipsis; /* 넘치는 텍스트에 줄임표 추가 */
 }
 
 .intro .intro-body .intro-text {
@@ -167,6 +170,9 @@ a:focus {
 
     .intro .intro-body .brand-heading {
         font-size: 100px;
+        white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
+        overflow: hidden;    /* 넘치는 텍스트를 숨김 */
+        text-overflow: ellipsis; /* 넘치는 텍스트에 줄임표 추가 */
     }
 
     .intro .intro-body .intro-text {
