@@ -21,12 +21,12 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <!-- Firebase JS SDK -->
-    <script type="module">
+   <script type="module">
+        // Import Firebase SDKs
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-analytics.js";
         import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
+        // Your Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyCLY3n9T4ArZO9zaze-NNVXcT8ZkkT6SCU",
             authDomain: "edcv-authentication.firebaseapp.com",
@@ -34,32 +34,32 @@
             storageBucket: "edcv-authentication.appspot.com",
             messagingSenderId: "302911215775",
             appId: "1:302911215775:web:49823030d85e71c9ce6aaa",
-            measurementId: "G-Q8WBWCDHV1"
         };
 
+        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
 
-        const auth = getAuth();
+        // Initialize Firebase Auth
+        const auth = getAuth(app);
         const provider = new GoogleAuthProvider();
 
-        // 로그인 함수
+        // Login function
         function login() {
             signInWithPopup(auth, provider)
                 .then((result) => {
                     const user = result.user;
                     console.log('User:', user);
                     alert(`Welcome, ${user.displayName}!`);
-                    document.getElementById('download-section').style.display = 'block'; // 다운로드 섹션 표시
+                    document.getElementById('download-section').style.display = 'block'; // Show download section
                 })
                 .catch((error) => {
-                    console.error('Error during sign-in:', error);
+                    console.error('Sign-in error:', error);
                 });
         }
     </script>
     <style>
         #download-section {
-            display: none; /* 기본적으로 다운로드 섹션 숨기기 */
+            display: none; /* Hide download section by default */
         }
     </style>
 </head>
