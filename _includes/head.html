@@ -26,7 +26,7 @@
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-analytics.js";
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+        import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
         // Your web app's Firebase configuration
         const firebaseConfig = {
@@ -45,23 +45,19 @@
 
         // Firebase Authentication
         const auth = getAuth();
+        const provider = new GoogleAuthProvider();
 
         // 로그인 함수
         function login() {
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            signInWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    // 로그인 성공
-                    const user = userCredential.user;
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    const user = result.user;
                     console.log('User:', user);
-                    alert(`Welcome, ${user.email}!`);
+                    alert(`Welcome, ${user.displayName}!`);
                     document.getElementById('download-section').style.display = 'block'; // 다운로드 섹션 표시
                 })
                 .catch((error) => {
                     console.error('Error during sign-in:', error);
-                    alert(error.message); // 에러 메시지 표시
                 });
         }
     </script>
