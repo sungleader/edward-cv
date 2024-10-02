@@ -1,9 +1,15 @@
-    <h1>Firebase Authentication Example</h1>
-    <button onclick="login()">Sign in with Google</button>
+    <div class="container">
+        <h1>비밀번호로 보호된 다운로드</h1>
 
-    <!-- Download Section -->
-    <section id="download-section" class="content-section text-center">
-        <div class="download-section">
+        <!-- 비밀번호 입력 섹션 -->
+        <div id="password-section">
+            <p>다운로드하려면 비밀번호를 입력하세요:</p>
+            <input type="password" id="password-input" placeholder="비밀번호 입력">
+            <button onclick="checkPassword()">확인</button>
+        </div>
+
+        <!-- 다운로드 섹션 (기본적으로 숨김 처리) -->
+        <div class="download-section" id="download-section" style="display: none;">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>Download Edward's CV</h2>
@@ -12,9 +18,23 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
+    <script>
+        // 비밀번호 검증 함수
+        function checkPassword() {
+            const inputPassword = document.getElementById('password-input').value;
+            const correctPassword = 'yourPassword'; // 원하는 비밀번호 설정
 
+            if (inputPassword === correctPassword) {
+                // 비밀번호가 맞으면 다운로드 섹션을 표시
+                document.getElementById('download-section').style.display = 'block';
+                document.getElementById('password-section').style.display = 'none';
+            } else {
+                alert('비밀번호가 틀렸습니다. 다시 시도하세요.');
+            }
+        }
+    </script>
 
 
 <!--     <section id="download" class="content-section text-center">
