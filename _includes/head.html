@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{{ site.description }}">
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 
@@ -21,45 +21,24 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-   <script type="module">
-        // Import Firebase SDKs
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
-        import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
-
-        // Your Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyCLY3n9T4ArZO9zaze-NNVXcT8ZkkT6SCU",
-            authDomain: "edcv-authentication.firebaseapp.com",
-            projectId: "edcv-authentication",
-            storageBucket: "edcv-authentication.appspot.com",
-            messagingSenderId: "302911215775",
-            appId: "1:302911215775:web:49823030d85e71c9ce6aaa",
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-
-        // Initialize Firebase Auth
-        const auth = getAuth(app);
-        const provider = new GoogleAuthProvider();
-
-        // Login function
-        function login() {
-            signInWithPopup(auth, provider)
-                .then((result) => {
-                    const user = result.user;
-                    console.log('User:', user);
-                    alert(`Welcome, ${user.displayName}!`);
-                    document.getElementById('download-section').style.display = 'block'; // Show download section
-                })
-                .catch((error) => {
-                    console.error('Sign-in error:', error);
-                });
-        }
-    </script>
     <style>
         #download-section {
-            display: none; /* Hide download section by default */
+            display: none; /* 비밀번호 확인 전에는 다운로드 링크 숨기기 */
         }
     </style>
+    <script>
+        // 비밀번호 검증 함수
+        function checkPassword() {
+            const inputPassword = document.getElementById('password-input').value;
+            const correctPassword = 'edwardcv'; // 원하는 비밀번호 설정
+
+            if (inputPassword === correctPassword) {
+                // 비밀번호가 맞으면 다운로드 섹션을 표시
+                document.getElementById('download-section').style.display = 'block';
+                document.getElementById('password-section').style.display = 'none';
+            } else {
+                alert('비밀번호가 틀렸습니다. 다시 시도하세요.');
+            }
+        }
+    </script>   
 </head>
