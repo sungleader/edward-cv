@@ -169,6 +169,7 @@ a:focus {
     .intro .intro-body .brand-heading {
         font-size: 89px;
         white-space: nowrap;
+        display: inline-block;
     }
 
     .intro .intro-body .intro-text {
